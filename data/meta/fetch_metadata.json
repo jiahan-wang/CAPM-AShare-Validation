@@ -1,0 +1,103 @@
+{
+  "fetch_time_utc8": "2026-08-31T17:39:53.710418+08:00",
+  "akshare_version": "1.18.94",
+  "pandas_version": "3.0.5",
+  "window": {
+    "start": "2023-12-29",
+    "end": "2025-12-31",
+    "note": "start含warm-up日，收益序列首日为2024-01-02"
+  },
+  "adjust_choice": {
+    "value": "hfq",
+    "reason": "后复权以上市日为锚，历史窗口内价格不随未来分红送转修订，fixture稳定性优于qfq"
+  },
+  "endpoints": {
+    "_archive_eastmoney": {
+      "note": "2026-08-31事故前的东财抓取记录(已被provider_incident判定不可用, 保留备查)",
+      "stock_zh_a_hist(六股x三套复权)": {
+        "rows_each": 486,
+        "status": "superseded"
+      },
+      "index_zh_a_hist(000300)": {
+        "status": "blocked_by_network"
+      }
+    },
+    "stock_zh_a_daily(sh600519)": {
+      "adjust": "hfq",
+      "rows": 486,
+      "action": "fetched",
+      "date": "2026-08-31"
+    },
+    "stock_zh_a_daily(sh600036)": {
+      "adjust": "hfq",
+      "rows": 486,
+      "action": "fetched",
+      "date": "2026-08-31"
+    },
+    "stock_zh_a_daily(sz300750)": {
+      "adjust": "hfq",
+      "rows": 486,
+      "action": "fetched",
+      "date": "2026-08-31"
+    },
+    "stock_zh_a_daily(sz000333)": {
+      "adjust": "hfq",
+      "rows": 486,
+      "action": "fetched",
+      "date": "2026-08-31"
+    },
+    "stock_zh_a_daily(sh600276)": {
+      "adjust": "hfq",
+      "rows": 486,
+      "action": "fetched",
+      "date": "2026-08-31"
+    },
+    "stock_zh_a_daily(sh600900)": {
+      "adjust": "hfq",
+      "rows": 486,
+      "action": "fetched",
+      "date": "2026-08-31"
+    },
+    "index_000300": {
+      "rows": 486,
+      "endpoint": "stock_zh_index_daily(sina)",
+      "action": "fetched",
+      "date": "2026-08-31"
+    },
+    "index_H00300": {
+      "error": "三个接口均无全收益序列, guard拒绝用价格指数冒充",
+      "status": "todo"
+    },
+    "bond_china_yield(1y)": {
+      "error": "No tables found",
+      "fallback": "rf附录用常数1.40%/252"
+    },
+    "yfinance(全部7序列)": {
+      "error": "HTTP 429持续限流",
+      "status": "mirror_not_built"
+    },
+    "raw_ext/六股_hfq_ohlc + index_000300_ohlc_full": {
+      "source": "stock_zh_a_daily(2015起, hfq) + stock_zh_index_daily(2014-12起)",
+      "action": "fetched",
+      "date": "2026-08-31",
+      "note": "十年扩展附录数据, 与主窗口同源(新浪)"
+    }
+  },
+  "mirror_status": "yfinance持续429，镜像未建成；第三方校验现状见provider_incident.third_party_scope，列为待办",
+  "provider_incident": {
+    "found": "2026-08-31 三源交叉验证(东财hfq vs 新浪raw vs 腾讯raw)",
+    "evidence": "非除权日(2024-09-24/2024-10-09/2025-04-07)东财hfq日收益被系统性压缩(如招行+3.95% vs 新浪+5.40% vs 腾讯+5.39%), 485天中471天|Δr|>1bp; 新浪hfq与新浪raw非事件日收益一致(内部自洽)",
+    "conclusion": "东财stock_zh_a_hist的hfq日收益不满足\"因子在事件间恒定\"的基本性质, 不可用于收益率估计; 主源切换为新浪stock_zh_a_daily(adjust=hfq); 腾讯仅用于招行样本的三源事故定位, 全量第三方校验未做(见third_party_scope)",
+    "action": "canonical全部结果基于新浪hfq重建",
+    "third_party_scope": "个股层面全量第三方校验未建成(yfinance 429)；事故定位为招行样本上的东财hfq×新浪raw×腾讯raw三源对照"
+  },
+  "manual_annotations": {
+    "fields": [
+      "endpoints._archive_eastmoney",
+      "provider_incident",
+      "mirror_status",
+      "endpoints条目中的action/date标注"
+    ],
+    "note": "这些字段为2026-08-31数据源事故处置后手工对齐的记录(事故先于脚本改造发生), 非fetch_data.py自动生成; 脚本自动生成字段: fetch_time_utc8/版本号/window/adjust_choice/endpoints中action=fetched或skip_existing的条目"
+  }
+}

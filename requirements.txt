@@ -1,0 +1,8 @@
+# Python侧仅用于取数与跨语言复核; 分析主体在R(见renv.lock)
+# 取数(联网, 手动运行)与分析复核(离线)共用此环境
+akshare==1.18.94
+yfinance==1.7.0
+pandas==3.0.5
+numpy==2.4.6
+statsmodels==0.15.0
+scipy==1.17.1

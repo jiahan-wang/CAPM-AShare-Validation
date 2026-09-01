@@ -1,0 +1,5 @@
+# CI专用离线依赖(与本地锁定版本一致; 取数依赖akshare/yfinance不在此列)
+pandas==3.0.5
+numpy==2.4.6
+scipy==1.17.1
+statsmodels==0.15.0

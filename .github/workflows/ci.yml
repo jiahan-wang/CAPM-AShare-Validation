@@ -1,0 +1,49 @@
+name: ci
+# 离线全流水线复现: 只吃committed数据(SHA-256见meta), 不触网
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.1'
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-renv@v2   # 按renv.lock精确恢复R包版本
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install python deps (offline分析复核用)
+        run: pip install -r requirements-ci.txt
+
+      - name: Snapshot committed tables
+        run: cp -r results/tables /tmp/committed_tables
+
+      - name: Rerun full pipeline
+        run: |
+          Rscript src/R/01_clean.R
+          Rscript src/R/02_base.R
+          Rscript src/R/03_robust.R
+          Rscript src/R/04_rolling.R
+          Rscript src/R/05_extended.R
+
+      - name: Assert recomputed == committed (per-coefficient tolerance)
+        run: python tests/assert_reproducible.py /tmp/committed_tables
+
+      - name: Cross-language replication (statsmodels vs R)
+        run: python tests/crosscheck.py
+
+      - name: README regenerable byte-identical
+        run: |
+          python src/py/gen_readme.py
+          git diff --exit-code README.md

@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv*/
+venv*/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+renv/local/
+renv/cellar/
+renv/staging/
+
+# 临时
+*.tmp
+.DS_Store
+
+# renv本地激活文件(不提交, CI由setup-renv处理)
+.Rprofile
+renv/

@@ -1,0 +1,16 @@
+{
+  "data/raw/000333_hfq.csv": "5a442d76286519e75c2fccb4188d84a1360c3c3383fcc8374ce86ed5463f123e",
+  "data/raw/300750_hfq.csv": "b511c2e0b5e3a6063e82f40866e0d3b34549a412fd5bfc04f479ee07fc49ee54",
+  "data/raw/600036_hfq.csv": "4720f91302f38bf0e7db1be96a8af19ae31170b96319031848345f43febf45aa",
+  "data/raw/600276_hfq.csv": "674700e2a7539164a4d0040c76b279dfaa1deda848b9099e07fcc35ac3156008",
+  "data/raw/600519_hfq.csv": "53658a2726e5e8aa233911040da7d8a883a219ef0c2ac6be530befdad9c4856e",
+  "data/raw/600900_hfq.csv": "b69d64abbfafee1475be84286e69d88c828716448189ea334ff885e57fcff595",
+  "data/raw/index_000300.csv": "d5777eb7734c9944e50be258b22437b9a7871789017f74d5c5fc90bce6f36c1c",
+  "data/raw_ext/000333_hfq_ohlc.csv": "2805c5f5092f13defc27222d4ad749333c72f7651b1f2eb6bfebfeb3d7fe0b1d",
+  "data/raw_ext/300750_hfq_ohlc.csv": "365efa9a2cd0542aecec6435f74c9dd52c171ee18df44db41c7fffb713f858a7",
+  "data/raw_ext/600036_hfq_ohlc.csv": "519f70d5f721907d03e87b8bf001b32ac16ace37cfb3d80c3e25d04950d560cc",
+  "data/raw_ext/600276_hfq_ohlc.csv": "0837af3f0053d168041dcc8db4466fec5f2d7c0b02c6598c0f412f0374492427",
+  "data/raw_ext/600519_hfq_ohlc.csv": "a8ae70123845ed26fda3e7e7260d994ae0f7ef9a3bee86b5823df90abfa5ccc9",
+  "data/raw_ext/600900_hfq_ohlc.csv": "7387f5877f75e9c067ccf154f3adcb0e19c11a88bff691f8204ac4bd1ad6abdc",
+  "data/raw_ext/index_000300_ohlc_full.csv": "8d64d00dfdfac8b840e219eca975c22feea26dcbd5a68d3b0dbb6758fe0737ef"
+}

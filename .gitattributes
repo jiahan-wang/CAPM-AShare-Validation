@@ -1,0 +1,10 @@
+# 统一行尾为LF, 保证Windows本地与Linux CI产出文件逐字节可复现
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+
+# 数据fixture按二进制处理: 本地/仓库/克隆三端字节一致, SHA-256可跨平台校验
+data/raw/** -text
+data/raw_ext/** -text
+data/processed/** -text
+data/meta/** -text
